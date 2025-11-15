@@ -385,51 +385,8 @@
             font-weight: bold;
         }
 
-        /* Mobile-First Responsive Improvements */
-
-        /* 1. Hero Section Height */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
-
-        /* 2. Image Size Optimization */
-        .hero-image {
-            height: 280px;
-        }
-
-        /* 3. Touch Targets yang Lebih Besar */
-        .sidebar-nav a, 
-        .mobile-menu a {
-            min-height: 48px;
-            padding: 12px 16px;
-        }
-
-        button, 
-        .glow-btn {
-            min-height: 44px;
-            min-width: 44px;
-            cursor: pointer;
-        }
-
-        /* 7. Viewport Height Fix untuk Mobile */
-        .mobile-fix {
-            min-height: calc(100vh - env(safe-area-inset-bottom));
-        }
-
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            /* 1. Hero Section Height for Mobile */
-            .hero-section {
-                min-height: 80vh;
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -465,14 +422,9 @@
                 grid-template-columns: 1fr;
             }
 
-            /* 2. Image Size Optimization for Mobile */
             .product-modal-image {
-                height: 200px;
+                height: 250px;
                 border-radius: 24px 24px 0 0;
-            }
-
-            .hero-image {
-                height: 280px;
             }
 
             .product-modal-info {
@@ -490,24 +442,6 @@
                 left: 0;
                 width: 100%;
             }
-
-            /* 3. Touch Targets yang Lebih Besar for Mobile */
-            .sidebar-nav a, 
-            .mobile-menu a {
-                min-height: 48px;
-                padding: 12px 16px;
-            }
-
-            button, 
-            .glow-btn {
-                min-height: 44px;
-                min-width: 44px;
-            }
-
-            /* 7. Viewport Height Fix untuk Mobile */
-            section {
-                min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-            }
         }
 
         @media (max-width: 480px) {
@@ -515,22 +449,12 @@
                 width: 280px;
             }
             
-            /* 4. Text Size Adjustment for Small Mobile */
             .hero-title {
-                font-size: 1.8rem;
-                line-height: 1.2;
-            }
-            
-            .hero-subtitle {
                 font-size: 2rem;
             }
             
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            body {
-                font-size: 14px;
+            .hero-subtitle {
+                font-size: 2.2rem;
             }
 
             .product-modal-content {
@@ -642,7 +566,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section relative overflow-hidden mobile-fix">
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <!-- Particles -->
         <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
         <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
@@ -666,20 +590,17 @@
             <div class="fade-in floating">
                 <div class="relative">
                     <div class="absolute inset-0 bg-[#00bfff] rounded-3xl opacity-20 blur-3xl"></div>
-                    <!-- 5. Performance Improvements for Images -->
                     <img src="./assets/images/hero-image.png" alt="CryvaStudio - Anime character using productivity tools on a laptop" 
-                         class="hero-image relative rounded-3xl glow-border w-full object-cover image-fallback"
-                         loading="lazy"
-                         decoding="async"
-                         sizes="(max-width: 768px) 100vw, 50vw"
-                         onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Hero Image'; this.style.display='flex'; this.innerHTML='<div>Hero Image</div>';">
+                         class="relative rounded-3xl glow-border w-full h-64 md:h-96 object-cover image-fallback"
+                         onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Hero Image'; this.style.display='flex'; this.innerHTML='<div>Hero Image</div>';"
+                         loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-20 relative mobile-fix">
+    <section id="products" class="py-20 relative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="section-title text-4xl md:text-5xl font-bold mb-4 gradient-text">Our Products</h2>
@@ -690,13 +611,11 @@
                 <!-- Product Card 1 -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <!-- 5. Performance Improvements for Images -->
+                        <!-- <img src="./assets/images/todo-app.jpg" alt="Kawaii Todo List - Anime-themed task management application" -->
                         <img src="./assets/images/coming-soon.png" alt="Kawaii Todo List - Anime-themed task management application" 
                              class="w-full h-48 object-cover image-fallback"
-                             loading="lazy"
-                             decoding="async"
-                             sizes="(max-width: 768px) 100vw, 33vw"
-                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Todo App'; this.style.display='flex'; this.innerHTML='<div>Todo App Image</div>';">
+                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Todo App'; this.style.display='flex'; this.innerHTML='<div>Todo App Image</div>';"
+                             loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Kawaii Todo List</h3>
@@ -710,13 +629,10 @@
                 <!-- Product Card 2 -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.1s;">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <!-- 5. Performance Improvements for Images -->
                         <img src="./assets/images/pomodoro-timer.png" alt="Anime Pomodoro Timer - Focus timer with anime characters and motivational quotes" 
                              class="w-full h-48 object-cover image-fallback"
-                             loading="lazy"
-                             decoding="async"
-                             sizes="(max-width: 768px) 100vw, 33vw"
-                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Pomodoro Timer'; this.style.display='flex'; this.innerHTML='<div>Pomodoro Image</div>';">
+                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Pomodoro Timer'; this.style.display='flex'; this.innerHTML='<div>Pomodoro Image</div>';"
+                             loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Anime Pomodoro Timer</h3>
@@ -730,13 +646,11 @@
                 <!-- Product Card 3 -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.2s;">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <!-- 5. Performance Improvements for Images -->
+                        <!-- <img src="./assets/images/habit-tracker.jpg" alt="Sakura Habit Tracker - Beautiful habit tracking application with cherry blossom animations" -->
                         <img src="./assets/images/coming-soon.png" alt="Sakura Habit Tracker - Beautiful habit tracking application with cherry blossom animations" 
                              class="w-full h-48 object-cover image-fallback"
-                             loading="lazy"
-                             decoding="async"
-                             sizes="(max-width: 768px) 100vw, 33vw"
-                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Habit Tracker'; this.style.display='flex'; this.innerHTML='<div>Habit Tracker Image</div>';">
+                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Habit Tracker'; this.style.display='flex'; this.innerHTML='<div>Habit Tracker Image</div>';"
+                             loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Sakura Habit Tracker</h3>
@@ -751,7 +665,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 relative mobile-fix">
+    <section id="about" class="py-20 relative">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">About CryvaStudio.</h2>
@@ -768,7 +682,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 relative mobile-fix">
+    <section id="contact" class="py-20 relative">
         <div class="container mx-auto px-6">
             <div class="text-center fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Get In Touch</h2>
@@ -813,11 +727,7 @@
             
             <div class="product-modal-grid">
                 <div class="product-modal-image">
-                    <!-- 5. Performance Improvements for Images -->
                     <img id="modal-image" src="" alt="Product Image" 
-                         loading="lazy"
-                         decoding="async"
-                         sizes="(max-width: 768px) 100vw, 50vw"
                          onerror="this.onerror=null; this.classList.add('image-fallback'); this.style.display='flex'; this.innerHTML='<div>Product Image</div>';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
@@ -858,19 +768,6 @@
     </div>
 
     <script>
-        // 6. Mobile-Specific Interactions
-        // Prevent zoom on double tap (iOS)
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        // Better touch handling for buttons
-        document.querySelectorAll('button, a').forEach(el => {
-            el.style.cursor = 'pointer';
-        });
-
         // Scroll Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
