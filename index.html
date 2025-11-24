@@ -121,6 +121,96 @@
             }
         }
 
+        /* Image Slider Styles */
+        .image-slider {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 24px 0 0 24px;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #00bfff;
+            border-color: #00bfff;
+            transform: scale(1.2);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 15px;
+        }
+
+        .slider-arrow.next {
+            right: 15px;
+        }
+
         /* Mobile Menu Styles */
         .mobile-menu {
             position: absolute;
@@ -375,6 +465,26 @@
             width: 100%;
         }
 
+        .demo-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
         /* Image fallback styling */
         .image-fallback {
             background: linear-gradient(135deg, #00bfff 0%, #1a1a2e 100%);
@@ -422,7 +532,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .product-modal-image {
+            .product-modal-image,
+            .image-slider {
                 height: 250px;
                 border-radius: 24px 24px 0 0;
             }
@@ -433,6 +544,11 @@
 
             .product-modal-actions {
                 flex-direction: column;
+            }
+
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
             }
 
             /* Fix mobile menu positioning */
@@ -460,6 +576,16 @@
             .product-modal-content {
                 width: 95%;
                 margin: 20px;
+            }
+
+            .slider-arrow {
+                width: 30px;
+                height: 30px;
+            }
+
+            .slider-dot {
+                width: 8px;
+                height: 8px;
             }
         }
     </style>
@@ -611,7 +737,6 @@
                 <!-- Product Card 1 -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <!-- <img src="./assets/images/todo-app.jpg" alt="Kawaii Todo List - Anime-themed task management application" -->
                         <img src="./assets/images/coming-soon.png" alt="Kawaii Todo List - Anime-themed task management application" 
                              class="w-full h-48 object-cover image-fallback"
                              onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Todo App'; this.style.display='flex'; this.innerHTML='<div>Todo App Image</div>';"
@@ -646,7 +771,6 @@
                 <!-- Product Card 3 -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.2s;">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <!-- <img src="./assets/images/habit-tracker.jpg" alt="Sakura Habit Tracker - Beautiful habit tracking application with cherry blossom animations" -->
                         <img src="./assets/images/coming-soon.png" alt="Sakura Habit Tracker - Beautiful habit tracking application with cherry blossom animations" 
                              class="w-full h-48 object-cover image-fallback"
                              onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Habit Tracker'; this.style.display='flex'; this.innerHTML='<div>Habit Tracker Image</div>';"
@@ -716,7 +840,7 @@
         </div>
     </footer>
 
-    <!-- Improved Product Details Modal -->
+    <!-- Improved Product Details Modal with Image Slider -->
     <div class="product-modal" id="product-modal">
         <div class="product-modal-content glow-border">
             <button class="product-modal-close" id="modal-close">
@@ -726,10 +850,25 @@
             </button>
             
             <div class="product-modal-grid">
-                <div class="product-modal-image">
-                    <img id="modal-image" src="" alt="Product Image" 
-                         onerror="this.onerror=null; this.classList.add('image-fallback'); this.style.display='flex'; this.innerHTML='<div>Product Image</div>';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div class="image-slider" id="image-slider">
+                    <div class="slider-container">
+                        <div class="slider-track" id="slider-track">
+                            <!-- Slides will be inserted here -->
+                        </div>
+                    </div>
+                    <button class="slider-arrow prev" id="slider-prev">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button class="slider-arrow next" id="slider-next">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    <div class="slider-nav" id="slider-nav">
+                        <!-- Dots will be inserted here -->
+                    </div>
                 </div>
                 
                 <div class="product-modal-info">
@@ -754,6 +893,12 @@
                         </div>
                         
                         <div class="product-modal-actions">
+                            <button id="modal-demo" class="demo-btn" style="display: none;">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                                View Demo
+                            </button>
                             <button id="modal-buy" class="w-full px-6 py-3 bg-[#00bfff] text-white font-semibold rounded-full glow-btn flex items-center justify-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
@@ -848,13 +993,17 @@
             }
         });
 
-        // Improved Product Details Modal
+        // Enhanced Product Details Modal with Image Slider
         const products = {
             todo: {
                 title: "Kawaii Todo List",
                 description: "Stay organized with adorable anime characters guiding your daily tasks. Perfect for students, professionals, and anyone who wants to make task management fun and engaging.",
                 price: "-",
-                image: "./assets/images/coming-soon.png",
+                images: [
+                    "./assets/images/coming-soon.png",
+                    "./assets/images/coming-soon.png",
+                    "./assets/images/coming-soon.png"
+                ],
                 features: [
                     "Customizable anime character assistants",
                     "Progress tracking with cute animations",
@@ -862,13 +1011,22 @@
                     "Cross-platform synchronization",
                     "Dark/Light theme options",
                     "Priority task highlighting"
-                ]
+                ],
+                demoUrl: null
             },
             pomodoro: {
                 title: "Anime Pomodoro Timer",
                 description: "Focus better with anime-styled timers and motivational quotes. Transform your work sessions into engaging anime adventures.",
                 price: "Rp 175.000",
-                image: "./assets/images/pomodoro-timer.png",
+                images: [
+                    "./assets/images/pomodoro-timer.png",
+                    "./assets/images/screenshots/Screenshot1.png",
+                    "./assets/images/screenshots/Screenshot2.png",
+                    "./assets/images/screenshots/Screenshot3.png",
+                    "./assets/images/screenshots/Screenshot4.png",
+                    "./assets/images/screenshots/Screenshot5.png",
+                    "./assets/images/screenshots/Screenshot6.png",
+                ],
                 features: [
                     "Animated character focus companions",
                     "Customizable work/break intervals",
@@ -876,13 +1034,18 @@
                     "Focus statistics and analytics",
                     "Multiple anime themes",
                     "Background music and sound effects"
-                ]
+                ],
+                demoUrl: "https://arvinfarrelp.github.io/StudyCompanion-Pomodoro-Timer-v1.0/"
             },
             habit: {
                 title: "Sakura Habit Tracker",
                 description: "Build lasting habits with beautiful cherry blossom animations. Watch your sakura tree bloom as you progress toward your goals.",
                 price: "$-",
-                image: "./assets/images/coming-soon.png",
+                images: [
+                    "./assets/images/coming-soon.png",
+                    "./assets/images/coming-soon.png",
+                    "./assets/images/coming-soon.png"
+                ],
                 features: [
                     "Interactive sakura tree growth",
                     "Daily streak tracking",
@@ -890,12 +1053,88 @@
                     "Custom habit categories",
                     "Social sharing features",
                     "Seasonal theme variations"
-                ]
+                ],
+                demoUrl: null
             }
         };
 
         const productModal = document.getElementById('product-modal');
         const modalClose = document.getElementById('modal-close');
+        const sliderTrack = document.getElementById('slider-track');
+        const sliderNav = document.getElementById('slider-nav');
+        const sliderPrev = document.getElementById('slider-prev');
+        const sliderNext = document.getElementById('slider-next');
+        const modalDemo = document.getElementById('modal-demo');
+
+        let currentSlide = 0;
+        let totalSlides = 0;
+
+        function initSlider(images) {
+            // Clear existing slides and dots
+            sliderTrack.innerHTML = '';
+            sliderNav.innerHTML = '';
+            
+            totalSlides = images.length;
+            currentSlide = 0;
+
+            // Create slides
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                slide.innerHTML = `
+                    <img src="${image}" alt="Product Image ${index + 1}" 
+                         onerror="this.onerror=null; this.classList.add('image-fallback'); this.style.display='flex'; this.innerHTML='<div>Product Image ${index + 1}</div>';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                `;
+                sliderTrack.appendChild(slide);
+
+                // Create navigation dots
+                const dot = document.createElement('div');
+                dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(index));
+                sliderNav.appendChild(dot);
+            });
+
+            updateSlider();
+        }
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        // Initialize slider controls
+        sliderPrev.addEventListener('click', prevSlide);
+        sliderNext.addEventListener('click', nextSlide);
+
+        // Auto slide every 5 seconds
+        let slideInterval;
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
 
         function openProductModal(productId) {
             const product = products[productId];
@@ -903,7 +1142,10 @@
             document.getElementById('modal-title').textContent = product.title;
             document.getElementById('modal-description').textContent = product.description;
             document.getElementById('modal-price').textContent = product.price;
-            document.getElementById('modal-image').src = product.image;
+            
+            // Initialize image slider
+            initSlider(product.images);
+            startAutoSlide();
             
             // Clear and populate features
             const featuresList = document.getElementById('modal-features');
@@ -913,6 +1155,16 @@
                 li.textContent = feature;
                 featuresList.appendChild(li);
             });
+
+            // Show/hide demo button
+            if (product.demoUrl) {
+                modalDemo.style.display = 'flex';
+                modalDemo.onclick = () => {
+                    window.open(product.demoUrl, '_blank');
+                };
+            } else {
+                modalDemo.style.display = 'none';
+            }
             
             productModal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -921,6 +1173,7 @@
         function closeProductModal() {
             productModal.classList.remove('active');
             document.body.style.overflow = '';
+            stopAutoSlide();
         }
 
         document.querySelectorAll('.product-details').forEach(button => {
@@ -941,6 +1194,11 @@
             alert('Thank you for your interest! Please contact us via WhatsApp or Instagram to purchase.');
             closeProductModal();
         });
+
+        // Pause auto-slide when hovering over slider
+        const imageSlider = document.getElementById('image-slider');
+        imageSlider.addEventListener('mouseenter', stopAutoSlide);
+        imageSlider.addEventListener('mouseleave', startAutoSlide);
 
         // Image error handling
         document.addEventListener('DOMContentLoaded', function() {
