@@ -734,8 +734,42 @@
             </div>
 
             <div class="product-grid grid md:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
+                <!-- Product Card 1 - Available Product -->
                 <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white">
+                    <div class="relative mb-6 overflow-hidden rounded-lg">
+                        <img src="./assets/images/Arona_and_Plana.jpg" alt="Anime Pomodoro Timer - Focus timer with anime characters and motivational quotes" 
+                             class="w-full h-48 object-cover image-fallback"
+                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Pomodoro Timer'; this.style.display='flex'; this.innerHTML='<div>Pomodoro Image</div>';"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Anime Pomodoro Timer</h3>
+                    <p class="text-gray-600 mb-4">Focus better with anime-styled timers and motivational quotes.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-[#00bfff]">Rp 39.000</span>
+                        <button class="px-6 py-2 bg-[#00bfff] text-white rounded-full hover:shadow-lg transition product-details" data-product="pomodoro">Details</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 - New Product -->
+                <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.1s;">
+                    <div class="relative mb-6 overflow-hidden rounded-lg">
+                        <img src="./assets/images/Hikari_and_Nozomi.jpg" alt="Anime Pomodoro Hikari & Nozomi Edition - Special edition with Hikari and Nozomi characters" 
+                             class="w-full h-48 object-cover image-fallback"
+                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Pomodoro Hikari & Nozomi Edition'; this.style.display='flex'; this.innerHTML='<div>Pomodoro Hikari & Nozomi Edition</div>';"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Anime Pomodoro Hikari & Nozomi Edition</h3>
+                    <p class="text-gray-600 mb-4">Special edition featuring Hikari and Nozomi characters for enhanced focus sessions.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-[#00bfff]">Rp 49.000</span>
+                        <button class="px-6 py-2 bg-[#00bfff] text-white rounded-full hover:shadow-lg transition product-details" data-product="hikari-nozomi">Details</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 - Available Product -->
+                <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.2s;">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
                         <img src="./assets/images/coming-soon.png" alt="Kawaii Todo List - Anime-themed task management application" 
                              class="w-full h-48 object-cover image-fallback"
@@ -751,25 +785,8 @@
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.1s;">
-                    <div class="relative mb-6 overflow-hidden rounded-lg">
-                        <img src="./assets/images/pomodoro-timer.png" alt="Anime Pomodoro Timer - Focus timer with anime characters and motivational quotes" 
-                             class="w-full h-48 object-cover image-fallback"
-                             onerror="this.onerror=null; this.classList.add('image-fallback'); this.alt='Pomodoro Timer'; this.style.display='flex'; this.innerHTML='<div>Pomodoro Image</div>';"
-                             loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#00bfff]/30 to-transparent"></div>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-[#00bfff]">Anime Pomodoro Timer</h3>
-                    <p class="text-gray-600 mb-4">Focus better with anime-styled timers and motivational quotes.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-[#00bfff]">Rp 39.000</span>
-                        <button class="px-6 py-2 bg-[#00bfff] text-white rounded-full hover:shadow-lg transition product-details" data-product="pomodoro">Details</button>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.2s;">
+                <!-- Product Card 4 - Coming Soon -->
+                <div class="fade-in card-hover glow-border rounded-xl p-6 bg-white" style="transition-delay: 0.3s;">
                     <div class="relative mb-6 overflow-hidden rounded-lg">
                         <img src="./assets/images/coming-soon.png" alt="Sakura Habit Tracker - Beautiful habit tracking application with cherry blossom animations" 
                              class="w-full h-48 object-cover image-fallback"
@@ -1037,10 +1054,29 @@
                 ],
                 demoUrl: "https://arvinfarrelp.github.io/StudyCompanion-Pomodoro-Timer-v1.0/"
             },
+            "hikari-nozomi": {
+                title: "Anime Pomodoro Hikari & Nozomi Edition",
+                description: "Special edition featuring Hikari and Nozomi characters for enhanced focus sessions. Experience the ultimate anime productivity companion with exclusive character interactions.",
+                price: "Rp 49.000",
+                images: [
+                    "./assets/images/pomodoro-timer1.png",
+                    "./assets/images/coming-soon.png",
+                    "./assets/images/coming-soon.png"
+                ],
+                features: [
+                    "Exclusive Hikari and Nozomi character themes",
+                    "Special character dialogues and interactions",
+                    "Enhanced focus tracking with character insights",
+                    "Limited edition backgrounds and animations",
+                    "Personalized motivation from Hikari and Nozomi",
+                    "Advanced productivity analytics"
+                ],
+                demoUrl: null
+            },
             habit: {
                 title: "Sakura Habit Tracker",
                 description: "Build lasting habits with beautiful cherry blossom animations. Watch your sakura tree bloom as you progress toward your goals.",
-                price: "$-",
+                price: "-",
                 images: [
                     "./assets/images/coming-soon.png",
                     "./assets/images/coming-soon.png",
